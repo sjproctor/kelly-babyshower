@@ -1,26 +1,62 @@
 @import "tailwindcss";
 
+/* Global CSS elements available on every element on the page */
 :root {
-  --background: #ffffff;
+  --background: #fffdf2;
   --foreground: #171717;
+
+  --lemon: #e6c55b;
+  --sky: #bad0de;
+  --orange: #e66b24;
+  --sage: #9fad8a;
+  --azzurro: #87b0cc;
+  --cypress: #424f33;
 }
 
+/* 
+Tailwind v4 specific
+Tells Tailwind to generate utility classes from CSS variables
+--color-background becomes the bg-background Tailwind class
+--font-sans becomes the font-sans Tailwind class
+Without this block, Tailwind wouldn't know about the custom values 
+*/
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+
+  --color-lemon: var(--lemon);
+  --color-sky: var(--sky);
+  --color-orange: var(--orange);
+  --color-sage: var(--sage);
+  --color-azzurro: var(--azzurro);
+  --color-cypress: var(--cypress);
+
+  --font-sans: var(--font-body);
+  --font-mono: var(--font-label);
+  --font-script: var(--font-script);
+  --font-block: var(--font-block);
+  --font-label: var(--font-label);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+/* 
+Registers a custom class inside Tailwind's utility layer
+It behaves exactly like a built-in Tailwind class 
+*/
+@layer utilities {
+  .bg-striped {
+    background: repeating-linear-gradient(
+      to right,
+      var(--sky) 0px,
+      var(--sky) 38px,
+      var(--background) 38px,
+      var(--background) 76px
+    );
   }
 }
 
+/* Sets the default font, background, and text color for the whole page using the variables defined above */
 body {
+  font-family: var(--font-body);
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
 }
