@@ -31,11 +31,11 @@ Without this block, Tailwind wouldn't know about the custom values
   --color-azzurro: var(--azzurro);
   --color-cypress: var(--cypress);
 
-  --font-sans: var(--font-body);
-  --font-mono: var(--font-label);
-  --font-script: var(--font-script);
-  --font-block: var(--font-block);
-  --font-label: var(--font-label);
+  --font-body: var(--font-garamond);
+  --font-mono: var(--font-montserrat);
+  --font-script: var(--font-corinthia);
+  --font-block: var(--font-anton);
+  --font-heading: var(--font-italiana);
 }
 
 /* 
@@ -59,4 +59,5 @@ body {
   font-family: var(--font-body);
   background: var(--background);
   color: var(--foreground);
+  width: 100%;
 }

@@ -1,22 +1,23 @@
 import type { Metadata } from "next"
 import {
-  Pacifico,
-  Bebas_Neue,
+  Anton,
+  Corinthia,
   Cormorant_Garamond,
-  Josefin_Sans
+  Italiana,
+  Montserrat
 } from "next/font/google"
 import "./globals.css"
 
-const pacifico = Pacifico({
+const anton = Anton({
   weight: "400",
   subsets: ["latin"],
-  variable: "--font-pacifico"
+  variable: "--font-anton"
 })
 
-const bebasNeue = Bebas_Neue({
+const corinthia = Corinthia({
   weight: "400",
   subsets: ["latin"],
-  variable: "--font-bebas"
+  variable: "--font-corinthia"
 })
 
 const cormorant = Cormorant_Garamond({
@@ -25,10 +26,16 @@ const cormorant = Cormorant_Garamond({
   variable: "--font-garamond"
 })
 
-const josefin = Josefin_Sans({
-  weight: ["300", "400", "600"],
+const italiana = Italiana({
+  weight: ["400"],
   subsets: ["latin"],
-  variable: "--font-josefin"
+  variable: "--font-montserrat"
+})
+
+const montserrat = Montserrat({
+  weight: ["200", "300"],
+  subsets: ["latin"],
+  variable: "--font-montserrat"
 })
 
 export const metadata: Metadata = {
@@ -43,8 +50,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      {/* text-base is a Tailwind utility class that sets the font size to 1rem (16px) */}
       <body
-        className={`${pacifico.variable} ${bebasNeue.variable} ${cormorant.variable} ${josefin.variable} antialiased`}
+        className={`${corinthia.variable} ${anton.variable} ${cormorant.variable} ${montserrat.variable} ${italiana.variable} antialiased text-base`}
       >
         {children}
       </body>
