@@ -46,17 +46,23 @@ It behaves exactly like a built-in Tailwind class
   .bg-striped {
     background: repeating-linear-gradient(
       to right,
-      var(--sky) 0px,
-      var(--sky) 38px,
+      color-mix(in srgb, var(--sky) 70%, transparent) 0px,
+      color-mix(in srgb, var(--sky) 70%, transparent) 38px,
       var(--background) 38px,
       var(--background) 76px
     );
+  }
+
+  .bg-tile {
+    background-image: url("/italian-tiles.png");
+    background-size: cover;
+    height: 10rem;
   }
 }
 
 /* Sets the default font, background, and text color for the whole page using the variables defined above */
 body {
-  font-family: var(--font-body);
+  font: var(--font-mono);
   background: var(--background);
   color: var(--foreground);
   width: 100%;

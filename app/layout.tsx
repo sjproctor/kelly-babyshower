@@ -29,7 +29,7 @@ const cormorant = Cormorant_Garamond({
 const italiana = Italiana({
   weight: ["400"],
   subsets: ["latin"],
-  variable: "--font-montserrat"
+  variable: "--font-italiana"
 })
 
 const montserrat = Montserrat({
