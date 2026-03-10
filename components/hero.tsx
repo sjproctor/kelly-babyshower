@@ -3,7 +3,7 @@ import Image from "next/image"
 
 export default function Hero() {
   return (
-    <div className="bg-gradient-to-tr from-background via-[#fffdf5] to-[#fffef8] py-[4rem]">
+    <div>
       <p className="font-script text-azzurro font-bold leading-none text-center text-[11rem] blur-[0.6px] -rotate-6 z-10 relative">
         Ciao
       </p>

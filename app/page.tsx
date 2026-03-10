@@ -4,11 +4,11 @@ import Hero from "@/components/hero"
 
 export default function Home() {
   return (
-    <main>
+    <main className="bg-striped">
       <Hero />
 
       {/* Everything below the hero */}
-      <Section className="bg-striped">
+      <Section className="">
         <h1 className="text-center text-[3rem] lg:text-[5rem] text-orange font-heading font-bold">
           Kelly's Baby Shower
         </h1>
