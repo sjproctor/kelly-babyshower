@@ -3,7 +3,7 @@ import Image from "next/image"
 
 export default function Hero() {
   return (
-    <div>
+    <div className="pt-20">
       <p className="font-script text-azzurro font-bold leading-none text-center text-[11rem] blur-[0.6px] -rotate-6 z-10 relative">
         Ciao
       </p>

@@ -14,9 +14,9 @@ export default function Home() {
               alt=""
               width={375}
               height={100}
-              className="mx-auto relative w-56 lg:w-96 -rotate-2"
+              className="mx-auto relative w-64 lg:w-120 -rotate-2"
             />
-            <h1 className="absolute top-5 left-0 right-0 text-center text-[3.5rem] lg:text-[6rem] text-orange font-cursive leading-none -rotate-12 blur-[0.5px]">
+            <h1 className="absolute top-7 lg:top-15 left-0 right-0 text-center text-[2.7rem] lg:text-[5rem] text-orange font-cursive leading-none -rotate-12 blur-[0.5px]">
               Kelly's <br /> Baby Shower
             </h1>
           </div>
@@ -47,13 +47,64 @@ export default function Home() {
           />
         </div>
       </section>
+
+      {/* Masonry section */}
       <section>
-        <div className="py-8">
-          <div className="flex flex-row gap-1 justify-center">
+        <div className="py-8 flex flex-row gap-1 justify-center">
+          {/* Col-1 */}
+          <div className="flex flex-col gap-1">
             <div>
               <Image
                 className="h-auto max-w-full rounded-base"
                 src="/italian-tiles.png"
+                alt=""
+                width={300}
+                height={500}
+              />
+            </div>
+            <div>
+              <Image
+                className="h-auto max-w-full rounded-base"
+                src="/lemon-background.png"
+                alt=""
+                width={300}
+                height={500}
+              />
+            </div>
+            <div>
+              <Image
+                className="h-auto max-w-full rounded-base"
+                src="/italian-tiles.png"
+                alt=""
+                width={300}
+                height={500}
+              />
+            </div>
+            <div>
+              <Image
+                className="h-auto max-w-full rounded-base"
+                src="/lemon-background.png"
+                alt=""
+                width={300}
+                height={500}
+              />
+            </div>
+            <div>
+              <Image
+                className="h-auto max-w-full rounded-base"
+                src="/italian-tiles.png"
+                alt=""
+                width={300}
+                height={500}
+              />
+            </div>
+          </div>
+          {/* Col-2 */}
+          <div className="flex flex-col gap-1">
+            <div className="border-1 border-azzurro bg-sky">
+              <Image
+                className="h-auto max-w-full rounded-base"
+                src="/lemon-tree.png"
                 alt=""
                 width={300}
                 height={500}
@@ -78,7 +129,8 @@ export default function Home() {
               />
             </div>
           </div>
-          <div className="flex flex-row gap-1 justify-center">
+          {/* Col-3 */}
+          <div className="flex flex-col gap-1">
             <div>
               <Image
                 className="h-auto max-w-full rounded-base"
@@ -88,55 +140,6 @@ export default function Home() {
                 height={500}
               />
             </div>
-            <div>
-              <Image
-                className="h-auto max-w-full rounded-base"
-                src="/italian-tiles.png"
-                alt=""
-                width={300}
-                height={500}
-              />
-            </div>
-            <div>
-              <Image
-                className="h-auto max-w-full rounded-base"
-                src="/italian-tiles.png"
-                alt=""
-                width={300}
-                height={500}
-              />
-            </div>
-          </div>
-          <div className="flex flex-row gap-1 justify-center">
-            <div>
-              <Image
-                className="h-auto max-w-full rounded-base"
-                src="/italian-tiles.png"
-                alt=""
-                width={300}
-                height={500}
-              />
-            </div>
-            <div>
-              <Image
-                className="h-auto max-w-full rounded-base"
-                src="/italian-tiles.png"
-                alt=""
-                width={300}
-                height={500}
-              />
-            </div>
-            <div>
-              <Image
-                className="h-auto max-w-full rounded-base"
-                src="/italian-tiles.png"
-                alt=""
-                width={300}
-                height={500}
-              />
-            </div>
-          </div>
-          <div className="flex flex-row gap-1 justify-center">
             <div>
               <Image
                 className="h-auto max-w-full rounded-base"
