@@ -3,6 +3,7 @@ import {
   Anton,
   Corinthia,
   Cormorant_Garamond,
+  Dancing_Script,
   Italiana,
   Montserrat
 } from "next/font/google"
@@ -24,6 +25,13 @@ const cormorant = Cormorant_Garamond({
   weight: ["300", "400", "600"],
   subsets: ["latin"],
   variable: "--font-garamond"
+})
+
+const dancing = Dancing_Script({
+  weight: ["600"],
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-dancing"
 })
 
 const italiana = Italiana({
@@ -52,7 +60,7 @@ export default function RootLayout({
     <html lang="en">
       {/* text-base is a Tailwind utility class that sets the font size to 1rem (16px) */}
       <body
-        className={`${corinthia.variable} ${anton.variable} ${cormorant.variable} ${montserrat.variable} ${italiana.variable} antialiased text-base`}
+        className={`${anton.variable} ${corinthia.variable} ${cormorant.variable} ${dancing.variable} ${montserrat.variable} ${italiana.variable} antialiased text-base`}
       >
         {children}
       </body>

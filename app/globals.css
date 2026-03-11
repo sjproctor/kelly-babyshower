@@ -5,12 +5,13 @@
   --background: #fffdf2;
   --foreground: #171717;
 
-  --lemon: #e6c55b;
-  --sky: #bad0de;
-  --orange: #e66b24;
-  --sage: #9fad8a;
   --azzurro: #87b0cc;
   --cypress: #424f33;
+  --lemon: #e6c55b;
+  --orange: #e66b24;
+  --orange-background: rgba(230, 107, 36, 0.8);
+  --sage: #9fad8a;
+  --sky: #bad0de;
 }
 
 /* 
@@ -24,18 +25,20 @@ Without this block, Tailwind wouldn't know about the custom values
   --color-background: var(--background);
   --color-foreground: var(--foreground);
 
-  --color-lemon: var(--lemon);
-  --color-sky: var(--sky);
-  --color-orange: var(--orange);
-  --color-sage: var(--sage);
   --color-azzurro: var(--azzurro);
   --color-cypress: var(--cypress);
+  --color-lemon: var(--lemon);
+  --color-orange: var(--orange);
+  --color-orange-background: var(--orange-background);
+  --color-sage: var(--sage);
+  --color-sky: var(--sky);
 
   --font-body: var(--font-garamond);
   --font-mono: var(--font-montserrat);
   --font-script: var(--font-corinthia);
   --font-block: var(--font-anton);
   --font-heading: var(--font-italiana);
+  --font-cursive: var(--font-dancing);
 }
 
 /* 
