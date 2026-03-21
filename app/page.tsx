@@ -49,125 +49,79 @@ export default function Home() {
       </section>
 
       {/* Masonry section */}
-      <section>
-        <div className="py-8 flex flex-row gap-1 justify-center">
-          {/* Col-1 */}
-          <div className="flex flex-col gap-1">
-            <div>
-              <Image
-                className="h-auto max-w-full rounded-base"
-                src="/italian-tiles.png"
-                alt=""
-                width={300}
-                height={500}
-              />
-            </div>
-            <div>
-              <Image
-                className="h-auto max-w-full rounded-base"
-                src="/lemon-background.png"
-                alt=""
-                width={300}
-                height={500}
-              />
-            </div>
-            <div>
-              <Image
-                className="h-auto max-w-full rounded-base"
-                src="/italian-tiles.png"
-                alt=""
-                width={300}
-                height={500}
-              />
-            </div>
-            <div>
-              <Image
-                className="h-auto max-w-full rounded-base"
-                src="/lemon-background.png"
-                alt=""
-                width={300}
-                height={500}
-              />
-            </div>
-            <div>
-              <Image
-                className="h-auto max-w-full rounded-base"
-                src="/italian-tiles.png"
-                alt=""
-                width={300}
-                height={500}
-              />
-            </div>
-          </div>
-          {/* Col-2 */}
-          <div className="flex flex-col gap-1">
-            <div className="border-1 border-azzurro bg-sky">
-              <Image
-                className="h-auto max-w-full rounded-base"
-                src="/lemon-tree.png"
-                alt=""
-                width={300}
-                height={500}
-              />
-            </div>
-            <div>
-              <Image
-                className="h-auto max-w-full rounded-base"
-                src="/italian-tiles.png"
-                alt=""
-                width={300}
-                height={500}
-              />
-            </div>
-            <div>
-              <Image
-                className="h-auto max-w-full rounded-base"
-                src="/italian-tiles.png"
-                alt=""
-                width={300}
-                height={500}
-              />
-            </div>
-          </div>
-          {/* Col-3 */}
-          <div className="flex flex-col gap-1">
-            <div>
-              <Image
-                className="h-auto max-w-full rounded-base"
-                src="/italian-tiles.png"
-                alt=""
-                width={300}
-                height={500}
-              />
-            </div>
-            <div>
-              <Image
-                className="h-auto max-w-full rounded-base"
-                src="/italian-tiles.png"
-                alt=""
-                width={300}
-                height={500}
-              />
-            </div>
-            <div>
-              <Image
-                className="h-auto max-w-full rounded-base"
-                src="/italian-tiles.png"
-                alt=""
-                width={300}
-                height={500}
-              />
-            </div>
-            <div>
-              <Image
-                className="h-auto max-w-full rounded-base"
-                src="/italian-tiles.png"
-                alt=""
-                width={300}
-                height={500}
-              />
-            </div>
-          </div>
+      <section className="flex row justify-center m-4">
+        {/* Col-1 */}
+        <div className="flex flex-col items-end mt-6">
+          <Image
+            className=""
+            src="/italian-tiles.png"
+            alt=""
+            width={275}
+            height={475}
+          />
+          <Image
+            className=""
+            src="/lemon-background.png"
+            alt=""
+            width={300}
+            height={500}
+          />
+          <Image
+            className=""
+            src="/italian-tiles.png"
+            alt=""
+            width={300}
+            height={500}
+          />
+          <Image
+            className=""
+            src="/lemon-background.png"
+            alt=""
+            width={300}
+            height={500}
+          />
+        </div>
+        {/* Col-2 */}
+        <div className="flex flex-col">
+          <Image className="" src="/date.png" alt="" width={300} height={500} />
+          <Image
+            className=""
+            src="/italian-tiles.png"
+            alt=""
+            width={300}
+            height={500}
+          />
+          <Image
+            className=""
+            src="/shells.png"
+            alt=""
+            width={300}
+            height={500}
+          />
+        </div>
+        {/* Col-3 */}
+        <div className="flex flex-col mt-10">
+          <Image
+            className=""
+            src="/vintage-beach.png"
+            alt=""
+            width={250}
+            height={475}
+          />
+          <Image
+            className=""
+            src="/italian-tiles.png"
+            alt=""
+            width={300}
+            height={500}
+          />
+          <Image
+            className=""
+            src="/italian-tiles.png"
+            alt=""
+            width={300}
+            height={500}
+          />
         </div>
       </section>
     </main>
