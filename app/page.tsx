@@ -22,74 +22,45 @@ export default function Home() {
           </div>
         </Section>
       </section>
-      <section className="bg-orange-background p-4">
-        <div className="flex row gap-1 justify-center">
-          <Image
-            src="/lemon.png"
-            alt=""
-            width={50}
-            height={100}
-            className="w-12 -rotate-95"
-          />
-          <Image
-            src="/lemon.png"
-            alt=""
-            width={50}
-            height={100}
-            className="w-12 -rotate-85"
-          />
-          <Image
-            src="/lemon.png"
-            alt=""
-            width={50}
-            height={100}
-            className="w-12 -rotate-91"
-          />
-        </div>
-      </section>
+      <div className="flex row -m-2">
+        <Image
+          src="/tiles.png"
+          alt=""
+          width={500}
+          height={200}
+          className="w-full object-cover"
+        />
+      </div>
 
       {/* Masonry section */}
-      <section className="flex row justify-center m-4">
+      <section className="flex row justify-center m-8">
         {/* Col-1 */}
-        <div className="flex flex-col items-end mt-6">
+        <div className="flex flex-col items-end mt-20">
           <Image
-            className=""
-            src="/italian-tiles.png"
+            className="-mr-10"
+            src="/starfish.png"
             alt=""
             width={275}
             height={475}
           />
+          <Image className="" src="/bike.png" alt="" width={400} height={600} />
           <Image
             className=""
-            src="/lemon-background.png"
-            alt=""
-            width={300}
-            height={500}
-          />
-          <Image
-            className=""
-            src="/italian-tiles.png"
-            alt=""
-            width={300}
-            height={500}
-          />
-          <Image
-            className=""
-            src="/lemon-background.png"
+            src="/shells-in-frame.png"
             alt=""
             width={300}
             height={500}
           />
         </div>
         {/* Col-2 */}
-        <div className="flex flex-col">
+        <div className="flex flex-col items-center">
           <Image className="" src="/date.png" alt="" width={300} height={500} />
           <Image
             className=""
-            src="/italian-tiles.png"
+            src="/address.png"
             alt=""
-            width={300}
-            height={500}
+            width={400}
+            height={300}
           />
           <Image
             className=""
@@ -102,15 +73,15 @@ export default function Home() {
         {/* Col-3 */}
         <div className="flex flex-col mt-10">
           <Image
-            className=""
-            src="/vintage-beach.png"
+            className="-ml-12"
+            src="/framed-lemons.png"
             alt=""
-            width={250}
+            width={400}
             height={475}
           />
           <Image
-            className=""
-            src="/italian-tiles.png"
+            className="-ml-2"
+            src="/vintage-beach.png"
             alt=""
             width={300}
             height={500}
