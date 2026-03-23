@@ -1,42 +1,42 @@
 import Image from "next/image"
-import Section from "@/components/section"
-import Hero from "@/components/hero"
 
 export default function Home() {
   return (
     <main className="overflow-x-hidden">
-      <section className="bg-striped">
-        <Hero />
-        <Image
-          src="/title-badge.png"
-          alt=""
-          width={375}
-          height={100}
-          className="mx-auto py-8 relative w-72 lg:w-120 -rotate-3"
-        />
+      <section className="bg-[url('/background.png')] bg-repeat-x bg-size-[auto_100%]">
+        <div className="flex justify-center py-8">
+          <Image
+            className="w-80 lg:w-120"
+            src="/hero.png"
+            alt="Ciao Bambino, join us to celebrate"
+            width={300}
+            height={600}
+          />
+        </div>
       </section>
 
       {/* Tile border */}
-      <div className="flex flex-row -mt-2">
-        <Image
-          src="/tiles.png"
-          alt=""
-          width={500}
-          height={300}
-          className="w-full object-cover"
-        />
-      </div>
+      <div className="bg-[url('/tile-border.png')] bg-repeat-x bg-size-[auto_100%] h-16 lg:h-24"></div>
 
       {/* Masonry section */}
       <section className="flex flex-col items-center py-8">
+        <div className="flex flex-row gap-1 mb-2">
+          <Image
+            className=""
+            src="/address-only.png"
+            alt=""
+            width={175}
+            height={100}
+          />
+          <Image
+            className=""
+            src="/date-time.png"
+            alt=""
+            width={175}
+            height={100}
+          />
+        </div>
         <Image className="" src="/date.png" alt="" width={300} height={400} />
-        <Image
-          className=""
-          src="/address.png"
-          alt=""
-          width={400}
-          height={300}
-        />
         <div className="flex flex-row gap-1 mb-2">
           <Image
             className=""
