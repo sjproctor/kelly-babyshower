@@ -4,96 +4,86 @@ import Hero from "@/components/hero"
 
 export default function Home() {
   return (
-    <main>
+    <main className="overflow-x-hidden">
       <section className="bg-striped">
         <Hero />
-        <Section className="">
-          <div className="relative">
-            <Image
-              src="/postage-stamp.png"
-              alt=""
-              width={375}
-              height={100}
-              className="mx-auto relative w-64 lg:w-120 -rotate-2"
-            />
-            <h1 className="absolute top-7 lg:top-15 left-0 right-0 text-center text-[2.7rem] lg:text-[5rem] text-orange font-cursive leading-none -rotate-12 blur-[0.5px]">
-              Kelly's <br /> Baby Shower
-            </h1>
-          </div>
-        </Section>
+        <Image
+          src="/title-badge.png"
+          alt=""
+          width={375}
+          height={100}
+          className="mx-auto py-8 relative w-72 lg:w-120 -rotate-3"
+        />
       </section>
-      <div className="flex row -m-2">
+
+      {/* Tile border */}
+      <div className="flex flex-row -mt-2">
         <Image
           src="/tiles.png"
           alt=""
           width={500}
-          height={200}
+          height={300}
           className="w-full object-cover"
         />
       </div>
 
       {/* Masonry section */}
-      <section className="flex row justify-center m-8">
-        {/* Col-1 */}
-        <div className="flex flex-col items-end mt-20">
+      <section className="flex flex-col items-center py-8">
+        <Image className="" src="/date.png" alt="" width={300} height={400} />
+        <Image
+          className=""
+          src="/address.png"
+          alt=""
+          width={400}
+          height={300}
+        />
+        <div className="flex flex-row gap-1 mb-2">
           <Image
-            className="-mr-10"
+            className=""
             src="/starfish.png"
             alt=""
-            width={275}
-            height={475}
-          />
-          <Image className="" src="/bike.png" alt="" width={400} height={600} />
-          <Image
-            className=""
-            src="/shells-in-frame.png"
-            alt=""
-            width={300}
-            height={500}
-          />
-        </div>
-        {/* Col-2 */}
-        <div className="flex flex-col items-center">
-          <Image className="" src="/date.png" alt="" width={300} height={500} />
-          <Image
-            className=""
-            src="/address.png"
-            alt=""
-            width={400}
-            height={300}
+            width={125}
+            height={250}
           />
           <Image
             className=""
             src="/shells.png"
             alt=""
-            width={300}
-            height={500}
-          />
-        </div>
-        {/* Col-3 */}
-        <div className="flex flex-col mt-10">
-          <Image
-            className="-ml-12"
-            src="/framed-lemons.png"
-            alt=""
-            width={400}
-            height={475}
-          />
-          <Image
-            className="-ml-2"
-            src="/vintage-beach.png"
-            alt=""
-            width={300}
-            height={500}
+            width={125}
+            height={250}
           />
           <Image
             className=""
-            src="/italian-tiles.png"
+            src="/shells-in-frame.png"
             alt=""
-            width={300}
-            height={500}
+            width={125}
+            height={250}
           />
         </div>
+        <div className="flex flex-row gap-1 mb-2">
+          <Image className="" src="/bike.png" alt="" width={175} height={100} />
+          <Image
+            className=""
+            src="/framed-lemons.png"
+            alt=""
+            width={175}
+            height={100}
+          />
+        </div>
+        <Image
+          className="-ml-2"
+          src="/vintage-beach.png"
+          alt=""
+          width={300}
+          height={500}
+        />
+        <Image
+          className=""
+          src="/sailboat.png"
+          alt=""
+          width={300}
+          height={500}
+        />
       </section>
     </main>
   )
