@@ -34,14 +34,14 @@ export default function Home() {
         <div className="lg:flex lg:flex-row lg:gap-4">
           <Image
             className="px-4 lg:px-0 pb-4"
-            src="/address.png"
+            src="/date-time.png"
             alt=""
             width={600}
             height={300}
           />
           <Image
             className="px-4 lg:px-0 pb-4"
-            src="/date-time.png"
+            src="/address.png"
             alt=""
             width={600}
             height={300}
