@@ -48,7 +48,19 @@ const montserrat = Montserrat({
 
 export const metadata: Metadata = {
   title: "Ciao Bambino",
-  description: "Kelly's baby shower"
+  description: "Please join us to celebrate Kelly on June 13th, 2026",
+  openGraph: {
+    title: "Ciao Bambino",
+    description: "Please join us to celebrate Kelly on June 13th, 2026",
+    url: "https://kelly-babyshower.vercel.app/",
+    siteName: "Ciao Bambino",
+    images: [
+      {
+        url: "https://kelly-babyshower.vercel.app/preview.png" // Must be absolute
+      }
+    ],
+    type: "website"
+  }
 }
 
 export default function RootLayout({
