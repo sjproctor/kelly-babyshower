@@ -18,21 +18,32 @@ export default function Home() {
       {/* Tile border */}
       <div className="bg-[url('/tile-border.png')] bg-repeat-x bg-size-[auto_100%] h-16 lg:h-24 mb-4"></div>
 
+      {/* Name badge section */}
+      <section className="flex flex-col items-center">
+        <Image
+          className="px-4 pb-4 -rotate-3"
+          src="/kelly.png"
+          alt=""
+          width={500}
+          height={300}
+        />
+      </section>
+
       {/* Address and date section */}
       <section className="flex flex-col items-center">
         <div className="lg:flex lg:flex-row lg:gap-4">
           <Image
             className="px-4 lg:px-0 pb-4"
-            src="/address-only.png"
+            src="/address.png"
             alt=""
-            width={500}
+            width={600}
             height={300}
           />
           <Image
             className="px-4 lg:px-0 pb-4"
             src="/date-time.png"
             alt=""
-            width={500}
+            width={600}
             height={300}
           />
         </div>
@@ -43,21 +54,21 @@ export default function Home() {
         {/* <div className="flex flex-row gap-2 mb-2 px-8 lg:px-20 py-4 lg:py-12 bg-[url('/frame-thin.png')] bg-no-repeat bg-size-[100%_100%]"> */}
         <div className="flex flex-row gap-2 mb-2">
           <Image
-            className="lg:w-48"
+            className="lg:w-44"
             src="/starfish.png"
             alt=""
             width={100}
             height={200}
           />
           <Image
-            className="lg:w-48"
+            className="lg:w-44"
             src="/vintage-beach.png"
             alt=""
             width={100}
             height={200}
           />
           <Image
-            className="lg:w-48"
+            className="lg:w-44"
             src="/sailboat.png"
             alt=""
             width={100}
@@ -96,10 +107,20 @@ export default function Home() {
         </a>
       </section>
 
-      {/* Tile border */}
+      {/* Tile footer */}
       <div className="bg-[url('/tile-border.png')] bg-repeat-x bg-size-[auto_100%] h-16 lg:h-24 mt-4"></div>
-      <div className="bg-dark-azure h-16 lg:h-24">
-        <p className="text-background font-cursive p-8">&copy; Sarah Proctor</p>
+      <div className="bg-dark-azure h-14 flex items-center justify-between">
+        <p className="text-background font-cursive mx-8">
+          Crafted with love by
+          <br className="sm:hidden" /> Sarah Proctor &copy; 2026
+        </p>
+        <Image
+          className="mx-8"
+          src="/lemon.png"
+          alt=""
+          width={50}
+          height={50}
+        />
       </div>
     </main>
   )
