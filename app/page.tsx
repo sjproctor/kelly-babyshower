@@ -4,7 +4,7 @@ export default function Home() {
   return (
     <main className="overflow-x-hidden">
       <section className="bg-[url('/background.png')] bg-repeat-x bg-size-[auto_100%]">
-        <div className="flex justify-center py-8">
+        <div className="flex justify-center py-24 lg:py-8">
           <Image
             className="w-80 lg:w-120"
             src="/hero.png"
@@ -16,25 +16,24 @@ export default function Home() {
       </section>
 
       {/* Tile border */}
-      <div className="bg-[url('/tile-border.png')] bg-repeat-x bg-size-[auto_100%] h-16 lg:h-24"></div>
+      <div className="bg-[url('/tile-border.png')] bg-repeat-x bg-size-[auto_100%] h-16 lg:h-24 mb-4"></div>
 
       {/* Address and date section */}
-      <section className="flex flex-col items-center py-4">
+      <section className="flex flex-col items-center">
         <div className="lg:flex lg:flex-row lg:gap-4">
           <Image
-            className="mb-2 lg:w-lg"
+            className="px-4 lg:px-0 pb-4"
             src="/address-only.png"
             alt=""
-            width={300}
-            height={200}
+            width={500}
+            height={300}
           />
-
           <Image
-            className="mb-2 lg:w-lg"
+            className="px-4 lg:px-0 pb-4"
             src="/date-time.png"
             alt=""
-            width={300}
-            height={200}
+            width={500}
+            height={300}
           />
         </div>
       </section>
