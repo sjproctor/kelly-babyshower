@@ -4,7 +4,7 @@ import Link from "next/link"
 export default function Home() {
   return (
     <>
-      <section className="bg-[url('/background.png')] bg-repeat-x bg-size-[auto_100%] border-b-1 border-dark-azure pb-16">
+      <section className="bg-[url('/background.png')] bg-repeat-x bg-size-[auto_100%] pb-18">
         <div className="flex justify-center py-28 lg:py-8">
           <Image
             className="w-80 lg:w-120"
