@@ -1,4 +1,5 @@
 import Image from "next/image"
+import Link from "next/link"
 
 export default function Home() {
   return (
@@ -15,100 +16,114 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Tile border */}
-      <div className="bg-[url('/tile-border.png')] bg-repeat-x bg-size-[auto_100%] h-16 lg:h-24 mb-4"></div>
-
-      {/* Name badge section */}
-      <section className="flex flex-col items-center">
-        <Image
-          className="px-4 pb-4 -rotate-3"
-          src="/kelly.png"
-          alt=""
-          width={500}
-          height={300}
-        />
-      </section>
-
-      {/* Address and date section */}
-      <section className="flex flex-col items-center">
-        <div className="lg:flex lg:flex-row lg:gap-4">
+      <div className="bg-[url('/background-body.png')]">
+        {/* Name badge section */}
+        <section className="flex flex-col items-center">
           <Image
-            className="px-4 lg:px-0 pb-4"
-            src="/date-time.png"
-            alt=""
-            width={600}
-            height={300}
-          />
-          <Image
-            className="px-4 lg:px-0 pb-4"
-            src="/address.png"
-            alt=""
-            width={600}
-            height={300}
-          />
-        </div>
-      </section>
-
-      {/* Image trio section */}
-      <section className="flex flex-col items-center pb-4">
-        {/* <div className="flex flex-row gap-2 mb-2 px-8 lg:px-20 py-4 lg:py-12 bg-[url('/frame-thin.png')] bg-no-repeat bg-size-[100%_100%]"> */}
-        <div className="flex flex-row gap-2 mb-2">
-          <Image
-            className="lg:w-44"
-            src="/starfish.png"
-            alt=""
-            width={100}
-            height={200}
-          />
-          <Image
-            className="lg:w-44"
-            src="/vintage-beach.png"
-            alt=""
-            width={100}
-            height={200}
-          />
-          <Image
-            className="lg:w-44"
-            src="/sailboat.png"
-            alt=""
-            width={100}
-            height={200}
-          />
-        </div>
-      </section>
-
-      {/* Registry section */}
-      <section className="flex flex-col items-center pb-4">
-        <a
-          href="https://my.babylist.com/baby-reg-kelly-whipple"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            className="lg:w-md"
-            src="/registry.png"
-            alt=""
-            width={300}
-            height={600}
-          />
-        </a>
-      </section>
-
-      {/* RSVP section */}
-      <section className="flex flex-col items-center pb-4">
-        <a href="/rsvp">
-          <Image
-            className="px-4 lg:px-0"
-            src="/rsvp.png"
+            className="px-4 pb-4 -rotate-3"
+            src="/kelly.png"
             alt=""
             width={500}
             height={300}
           />
-        </a>
-      </section>
+        </section>
 
-      {/* Tile footer */}
-      <div className="bg-[url('/tile-border.png')] bg-repeat-x bg-size-[auto_100%] h-16 lg:h-24 mt-4"></div>
+        {/* Address and date section */}
+        <section className="flex flex-wrap justify-center gap-4">
+          <Image
+            className="w-80"
+            src="/time-date.png"
+            alt=""
+            width={400}
+            height={200}
+          />
+          <Link
+            href="https://www.google.com/maps/place/2707+Malibu+Rd,+Boise,+ID+83705/@43.5778988,-116.2306942,17z/data=!3m1!4b1!4m6!3m5!1s0x54ae57e771e1c4d9:0x4afa883c20147fbb!8m2!3d43.5778988!4d-116.2281193!16s%2Fg%2F11c4vx5fg7?authuser=0&entry=ttu&g_ep=EgoyMDI2MDQwMS4wIKXMDSoASAFQAw%3D%3D"
+            target="_blank"
+            className="relative block w-80 h-70 lg:w-150"
+            aria-label="click here for a google map of 2707 Malibu, Boise ID"
+          >
+            <Image
+              className=""
+              src="/address.png"
+              alt=""
+              width={400}
+              height={200}
+            />
+          </Link>
+        </section>
+
+        {/* Image collage section */}
+        <section className="my-4">
+          <div className="flex justify-center gap-4 my-2">
+            <Image
+              className="object-scale-down"
+              src="/starfish.png"
+              alt=""
+              width={100}
+              height={50}
+              fill={false}
+            />
+            <Image
+              className="object-scale-down w-32 rotate-1"
+              src="/vintage-beach.png"
+              alt=""
+              width={50}
+              height={100}
+              fill={false}
+            />
+            <Image
+              className="object-scale-down w-28 -rotate-2"
+              src="/sailboat.png"
+              alt=""
+              width={50}
+              height={100}
+              fill={false}
+            />
+          </div>
+          <div className="flex justify-center gap-4 my-2">
+            <Image
+              className="object-scale-down w-28 rotate-1"
+              src="/shells-in-frame.png"
+              alt=""
+              width={50}
+              height={100}
+              fill={false}
+            />
+          </div>
+        </section>
+
+        {/* Registry section */}
+        <section className="flex flex-col items-center pb-4">
+          <a
+            href="https://my.babylist.com/baby-reg-kelly-whipple"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <Image
+              className="lg:w-md"
+              src="/registry.png"
+              alt=""
+              width={300}
+              height={600}
+            />
+          </a>
+        </section>
+
+        {/* RSVP section */}
+        <section className="flex flex-col items-center pb-4">
+          <a href="/rsvp">
+            <Image
+              className="px-4 lg:px-0"
+              src="/rsvp.png"
+              alt=""
+              width={500}
+              height={300}
+            />
+          </a>
+        </section>
+      </div>
+      {/* Footer */}
       <div className="bg-dark-azure h-14 flex items-center justify-between">
         <p className="text-background font-cursive mx-8">
           Crafted with love by
