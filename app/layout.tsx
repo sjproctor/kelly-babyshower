@@ -8,6 +8,7 @@ import {
   Montserrat
 } from "next/font/google"
 import "./globals.css"
+import Footer from "@/components/Footer"
 
 const anton = Anton({
   weight: "400",
@@ -74,7 +75,8 @@ export default function RootLayout({
       <body
         className={`${anton.variable} ${corinthia.variable} ${cormorant.variable} ${dancing.variable} ${montserrat.variable} ${italiana.variable} antialiased text-base`}
       >
-        {children}
+        <main className="overflow-x-hidden">{children}</main>
+        <Footer />
       </body>
     </html>
   )

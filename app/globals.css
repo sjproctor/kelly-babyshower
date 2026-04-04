@@ -57,12 +57,6 @@ It behaves exactly like a built-in Tailwind class
       var(--background) 76px
     );
   }
-
-  .bg-tile {
-    background-image: url("/italian-tiles.png");
-    background-size: cover;
-    height: 10rem;
-  }
 }
 
 /* Sets the default font, background, and text color for the whole page using the variables defined above */
