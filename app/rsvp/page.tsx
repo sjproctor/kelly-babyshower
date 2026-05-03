@@ -18,7 +18,7 @@ export default function RsvpPage() {
     email: "",
     message: ""
   })
-  const [submitted, setSubmitted] = useState<RsvpData | null>(null)
+  const [submitted, setSubmitted] = useState<RsvpData | null>(true)
   const [error, setError] = useState<string | null>(null)
 
   const submitRsvp = async () => {
@@ -38,39 +38,24 @@ export default function RsvpPage() {
   }
   return (
     <>
-      <div className="bg-[url('/lemon-background.png')] bg-repeat-y bg-size-[100%_auto] object-cover">
+      <div className="bg-[url('/background-rsvp.png')] bg-repeat-y bg-size-[100%_auto] object-cover">
         <div className="p-4">
           <Link href="/" aria-label="back to home page">
             <FaArrowLeft size="28" className="text-cypress" />
           </Link>
         </div>
-        <section className="flex justify-around md:justify-center gap-3 mt-2 mx-4">
-          <Image
-            className="object-scale-down w-16 rotate-1"
-            src="/blue-shells.png"
-            alt=""
-            width={200}
-            height={400}
-            fill={false}
-          />
-          <Image
-            className="object-scale-down w-18 -rotate-2"
-            src="/ciao-bella.png"
-            alt=""
-            width={200}
-            height={400}
-            fill={false}
-          />
-          <Image
-            className="object-scale-down w-18"
-            src="/shells.png"
-            alt=""
-            width={200}
-            height={400}
-            fill={false}
-          />
-        </section>
         <section className="m-4">
+          <div className="flex justify-center">
+            <Image
+              className="pb-4"
+              src="/bring-a-book.png"
+              alt=""
+              width={400}
+              height={200}
+              loading="eager"
+              aria-label="Kelly asks that you please bring a book in lieu of a card."
+            />
+          </div>
           {submitted ? (
             <div
               role="status"
@@ -78,170 +63,192 @@ export default function RsvpPage() {
               className="bg-background p-6 rounded-lg max-w-xl mx-auto"
             >
               <h2 className="font-heading font-semibold text-gray-900 text-center text-2xl">
-                Thanks, {submitted.name}!
+                Thank you, {submitted.name}!
               </h2>
-              <p className="font-body text-gray-700 text-center text-lg mt-2">
-                Your RSVP has been received.
+              <p className="font-body text-gray-700 text-center text-xl mt-2">
+                Your RSVP has been submitted.
               </p>
-              <dl className="font-body text-gray-800 mt-6 space-y-2">
+              <dl className="font-body text-gray-800 mt-6 space-y-2 bg-sage p-6 rounded-md">
                 <div className="flex gap-2">
-                  <dt className="font-semibold">Name:</dt>
-                  <dd>{submitted.name}</dd>
+                  <p className="font-semibold text-white text-lg">
+                    Name: {submitted.name}
+                  </p>
                 </div>
                 <div className="flex gap-2">
-                  <dt className="font-semibold">Party size:</dt>
-                  <dd>{submitted.guests}</dd>
+                  <p className="font-semibold text-white text-lg">
+                    Party size: {submitted.guests}
+                  </p>
                 </div>
                 <div className="flex gap-2">
-                  <dt className="font-semibold">Email:</dt>
-                  <dd>{submitted.email}</dd>
+                  <p className="font-semibold text-white text-lg">
+                    Email: {submitted.email}
+                  </p>
                 </div>
                 {submitted.message && (
                   <div className="flex flex-col gap-1">
-                    <dt className="font-semibold">Message:</dt>
-                    <dd className="whitespace-pre-wrap">{submitted.message}</dd>
+                    <p className="font-semibold text-white text-lg">Message:</p>
+                    <p className="whitespace-pre-wrap">{submitted.message}</p>
                   </div>
                 )}
               </dl>
-              <div className="flex justify-center mt-6">
+              <br />
+              <p className="font-body text-gray-700 text-center text-lg mt-2">
+                We look forward to seeing you on <br className="sm:hidden" />
+                <b>Saturday, June 13th</b>
+              </p>
+              <p className="font-body text-gray-700 text-center text-lg">
+                Drop in anytime between
+                <b>1 pm and 4 pm</b>
+              </p>
+              <div className="flex justify-center">
+                <Image
+                  src="/lemon.png"
+                  alt=""
+                  width={25}
+                  height={25}
+                  className="-rotate-10"
+                />
+              </div>
+              <p className="font-body text-gray-700 text-center text-lg">
+                See the map below for directions to <br className="sm:hidden" />
+                <b>2707 Malibu Road, 83705</b>
+              </p>
+              <div className="flex justify-center mt-10">
                 <Link
                   href="/"
-                  className="rounded-md bg-sage px-3 py-2 text-lg font-semibold text-white shadow-xs hover:bg-indigo-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sage font-body"
+                  className="rounded-md bg-sage px-3 py-2 text-lg font-semibold text-white shadow-xs hover:bg-lemon focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sage font-body mx-2"
                 >
                   Back to home
+                </Link>
+                <Link
+                  href="https://my.babylist.com/baby-reg-kelly-whipple"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="rounded-md bg-sage px-3 py-2 text-lg font-semibold text-white shadow-xs hover:bg-lemon focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sage font-body mx-2"
+                >
+                  Registry
                 </Link>
               </div>
             </div>
           ) : (
-          <form
-            className="bg-background p-4 rounded-lg max-w-xl mx-auto"
-            onSubmit={(e) => {
-              e.preventDefault()
-              submitRsvp()
-            }}
-          >
-            <div className="flex justify-center">
-              <Image
-                className="object-scale-down w-80 md:70 rounded-sm pb-4"
-                src="/bring-a-book.png"
-                alt=""
-                width={400}
-                height={200}
-                fill={false}
-                aria-label="Kelly asks that you please bring a book in lieu of a card."
-              />
-            </div>
-            <h2 className="font-heading font-semibold text-gray-900 text-center text-2xl">
-              RSVP
-            </h2>
-            <p className="font-body text-gray-700 text-center text-xl">
-              Please feel free to drop in anytime between 1 pm and 4 pm.
-            </p>
-            {error && (
-              <div
-                role="alert"
-                className="mt-4 rounded-md bg-red-50 border border-red-200 px-3 py-2 text-red-800 font-body text-base"
-              >
-                {error}
-              </div>
-            )}
-            <div className="mt-6">
-              <div className="my-4">
-                <label
-                  htmlFor="name"
-                  className="block text-lg font-medium text-gray-900 font-body"
+            <form
+              className="bg-background p-4 rounded-lg max-w-xl mx-auto"
+              onSubmit={(e) => {
+                e.preventDefault()
+                submitRsvp()
+              }}
+            >
+              <h2 className="font-heading font-semibold text-gray-900 text-center text-2xl">
+                RSVP
+              </h2>
+              <p className="font-body text-gray-700 text-center text-xl">
+                Please feel free to drop in anytime between 1 pm and 4 pm.
+              </p>
+              {error && (
+                <div
+                  role="alert"
+                  className="mt-4 rounded-md bg-red-50 border border-red-200 px-3 py-2 text-red-800 font-body text-base"
                 >
-                  Your name(s)*
-                </label>
-                <div className="mt-2">
-                  <input
-                    id="name"
-                    type="text"
-                    name="name"
-                    autoComplete="given-name"
-                    placeholder="Name(s)"
-                    onChange={(e) =>
-                      setFormData({ ...formData, name: e.target.value })
-                    }
-                    required
-                    className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-sage sm:text-lg"
-                  />
+                  {error}
+                </div>
+              )}
+              <div className="mt-6">
+                <div className="my-4">
+                  <label
+                    htmlFor="name"
+                    className="block text-lg font-medium text-gray-900 font-body"
+                  >
+                    Your name(s)*
+                  </label>
+                  <div className="mt-2">
+                    <input
+                      id="name"
+                      type="text"
+                      name="name"
+                      autoComplete="given-name"
+                      placeholder="Name(s)"
+                      onChange={(e) =>
+                        setFormData({ ...formData, name: e.target.value })
+                      }
+                      required
+                      className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-sage sm:text-lg"
+                    />
+                  </div>
+                </div>
+                <div className="my-4">
+                  <label
+                    htmlFor="guests"
+                    className="block text-lg font-medium text-gray-900 font-body"
+                  >
+                    Number in your party (including yourself)*
+                  </label>
+                  <div className="mt-2">
+                    <input
+                      id="guests"
+                      type="number"
+                      name="guests"
+                      placeholder="0"
+                      min="1"
+                      onChange={(e) =>
+                        setFormData({ ...formData, guests: e.target.value })
+                      }
+                      required
+                      className="block w-20 rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-sage sm:text-lg"
+                    />
+                  </div>
+                </div>
+                <div className="my-4">
+                  <label
+                    htmlFor="email"
+                    className="block text-lg font-medium text-gray-900 font-body"
+                  >
+                    Your preferred contact email*
+                  </label>
+                  <div className="mt-2">
+                    <input
+                      id="email"
+                      type="email"
+                      name="email"
+                      autoComplete="email"
+                      placeholder="Email"
+                      onChange={(e) =>
+                        setFormData({ ...formData, email: e.target.value })
+                      }
+                      required
+                      className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-sage sm:text-lg"
+                    />
+                  </div>
+                </div>
+                <div className="my-4">
+                  <label
+                    htmlFor="message"
+                    className="block text-lg font-medium text-gray-900 font-body"
+                  >
+                    Include a message for Kelly and the baby (optional)
+                  </label>
+                  <div className="mt-2">
+                    <textarea
+                      id="message"
+                      name="message"
+                      rows={3}
+                      placeholder="Message..."
+                      onChange={(e) =>
+                        setFormData({ ...formData, message: e.target.value })
+                      }
+                      className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-sage sm:text-lg"
+                    ></textarea>
+                  </div>
                 </div>
               </div>
-              <div className="my-4">
-                <label
-                  htmlFor="guests"
-                  className="block text-lg font-medium text-gray-900 font-body"
+              <div className="flex justify-center my-4">
+                <button
+                  type="submit"
+                  className="rounded-md bg-sage px-3 py-2 text-lg font-semibold text-white shadow-xs hover:bg-lemon focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sage font-body"
                 >
-                  Number in your party (including yourself)*
-                </label>
-                <div className="mt-2">
-                  <input
-                    id="guests"
-                    type="number"
-                    name="guests"
-                    placeholder="0"
-                    min="1"
-                    onChange={(e) =>
-                      setFormData({ ...formData, guests: e.target.value })
-                    }
-                    required
-                    className="block w-20 rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-sage sm:text-lg"
-                  />
-                </div>
+                  Submit
+                </button>
               </div>
-              <div className="my-4">
-                <label
-                  htmlFor="email"
-                  className="block text-lg font-medium text-gray-900 font-body"
-                >
-                  Your preferred contact email*
-                </label>
-                <div className="mt-2">
-                  <input
-                    id="email"
-                    type="email"
-                    name="email"
-                    autoComplete="email"
-                    placeholder="Email"
-                    onChange={(e) =>
-                      setFormData({ ...formData, email: e.target.value })
-                    }
-                    required
-                    className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-sage sm:text-lg"
-                  />
-                </div>
-              </div>
-              <div className="my-4">
-                <label
-                  htmlFor="message"
-                  className="block text-lg font-medium text-gray-900 font-body"
-                >
-                  Include a message for Kelly and the baby (optional)
-                </label>
-                <div className="mt-2">
-                  <textarea
-                    id="message"
-                    name="message"
-                    rows={3}
-                    placeholder="Message..."
-                    onChange={(e) =>
-                      setFormData({ ...formData, message: e.target.value })
-                    }
-                    className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-sage sm:text-lg"
-                  ></textarea>
-                </div>
-              </div>
-            </div>
-            <div className="flex justify-center my-4">
-              <button
-                type="submit"
-                className="rounded-md bg-sage px-3 py-2 text-lg font-semibold text-white shadow-xs hover:bg-indigo-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sage font-body"
-              >
-                Submit
-              </button>
-            </div>
-          </form>
+            </form>
           )}
         </section>
 
