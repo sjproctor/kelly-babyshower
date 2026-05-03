@@ -7,6 +7,7 @@ import {
   Italiana,
   Montserrat
 } from "next/font/google"
+import { Analytics } from "@vercel/analytics/next"
 import "./globals.css"
 import Footer from "@/components/Footer"
 
@@ -77,6 +78,7 @@ export default function RootLayout({
       >
         <main className="overflow-x-hidden">{children}</main>
         <Footer />
+        <Analytics />
       </body>
     </html>
   )
