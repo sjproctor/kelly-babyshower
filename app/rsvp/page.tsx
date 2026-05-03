@@ -4,23 +4,37 @@ import Image from "next/image"
 import Link from "next/link"
 import { FaArrowLeft } from "react-icons/fa"
 
+type RsvpData = {
+  name: string
+  guests: string
+  email: string
+  message: string
+}
+
 export default function RsvpPage() {
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<RsvpData>({
     name: "",
     guests: "",
     email: "",
     message: ""
   })
+  const [submitted, setSubmitted] = useState<RsvpData | null>(null)
+  const [error, setError] = useState<string | null>(null)
 
-  const handleSubmit = async (e: React.SubmitEvent) => {
-    e.preventDefault()
+  const submitRsvp = async () => {
+    setError(null)
     const res = await fetch("/api/rsvp", {
       method: "POST",
       body: JSON.stringify(formData),
       headers: { "Content-Type": "application/json" }
     })
 
-    if (res.ok) alert("Submitted successfully!")
+    if (res.ok) {
+      setSubmitted(formData)
+      window.scrollTo({ top: 0, behavior: "smooth" })
+    } else {
+      setError("Something went wrong submitting your RSVP. Please try again.")
+    }
   }
   return (
     <>
@@ -57,9 +71,54 @@ export default function RsvpPage() {
           />
         </section>
         <section className="m-4">
+          {submitted ? (
+            <div
+              role="status"
+              aria-live="polite"
+              className="bg-background p-6 rounded-lg max-w-xl mx-auto"
+            >
+              <h2 className="font-heading font-semibold text-gray-900 text-center text-2xl">
+                Thanks, {submitted.name}!
+              </h2>
+              <p className="font-body text-gray-700 text-center text-lg mt-2">
+                Your RSVP has been received.
+              </p>
+              <dl className="font-body text-gray-800 mt-6 space-y-2">
+                <div className="flex gap-2">
+                  <dt className="font-semibold">Name:</dt>
+                  <dd>{submitted.name}</dd>
+                </div>
+                <div className="flex gap-2">
+                  <dt className="font-semibold">Party size:</dt>
+                  <dd>{submitted.guests}</dd>
+                </div>
+                <div className="flex gap-2">
+                  <dt className="font-semibold">Email:</dt>
+                  <dd>{submitted.email}</dd>
+                </div>
+                {submitted.message && (
+                  <div className="flex flex-col gap-1">
+                    <dt className="font-semibold">Message:</dt>
+                    <dd className="whitespace-pre-wrap">{submitted.message}</dd>
+                  </div>
+                )}
+              </dl>
+              <div className="flex justify-center mt-6">
+                <Link
+                  href="/"
+                  className="rounded-md bg-sage px-3 py-2 text-lg font-semibold text-white shadow-xs hover:bg-indigo-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sage font-body"
+                >
+                  Back to home
+                </Link>
+              </div>
+            </div>
+          ) : (
           <form
             className="bg-background p-4 rounded-lg max-w-xl mx-auto"
-            onSubmit={handleSubmit}
+            onSubmit={(e) => {
+              e.preventDefault()
+              submitRsvp()
+            }}
           >
             <div className="flex justify-center">
               <Image
@@ -78,6 +137,14 @@ export default function RsvpPage() {
             <p className="font-body text-gray-700 text-center text-xl">
               Please feel free to drop in anytime between 1 pm and 4 pm.
             </p>
+            {error && (
+              <div
+                role="alert"
+                className="mt-4 rounded-md bg-red-50 border border-red-200 px-3 py-2 text-red-800 font-body text-base"
+              >
+                {error}
+              </div>
+            )}
             <div className="mt-6">
               <div className="my-4">
                 <label
@@ -175,6 +242,7 @@ export default function RsvpPage() {
               </button>
             </div>
           </form>
+          )}
         </section>
 
         {/* Map section */}
