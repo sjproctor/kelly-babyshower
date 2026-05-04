@@ -19,9 +19,9 @@ export default function Home() {
 
       {/* Below the fold */}
       <section className="bg-[url('/background-body.png')] py-20 min-h-lvh">
-        <div className="flex flex-col items-center">
+        <div className="flex flex-col items-center gap-y-8 lg:gap-y-0">
           <Image
-            className="px-4 pb-4 -rotate-3"
+            className="px-4 -rotate-3 lg:pb-4"
             src="/kelly.png"
             alt="Auguri Kelly! In celebration of mom-to-be"
             width={500}
@@ -29,9 +29,9 @@ export default function Home() {
           />
 
           {/* Locations data */}
-          <div className="lg:flex m-8">
+          <div className="flex flex-col gap-y-8 lg:flex-row lg:gap-y-0 lg:m-8">
             <Image
-              className="p-4"
+              className="px-4 lg:p-4"
               src="/date-time.png"
               alt="Saturday, June 13; drop by anytime between 1 pm to 4 pm"
               width={500}
@@ -44,7 +44,7 @@ export default function Home() {
               aria-label="Click for a Google map of 2707 Malibu Road, Boise ID"
             >
               <Image
-                className="p-4"
+                className="px-4 lg:p-4"
                 src="/address.png"
                 alt="2707 Malibu Road, Boise ID"
                 width={500}
@@ -52,16 +52,16 @@ export default function Home() {
               />
             </Link>
           </div>
-          <div className="m-4">
+          <div className="lg:m-4">
             <Image
-              className="p-4"
+              className="px-4 lg:p-4"
               src="/bike.png"
               alt="Please consider carpooling, ride shares, or biking to reduce parking congestion"
               width={600}
               height={350}
             />
           </div>
-          <div className="m-4">
+          <div className="lg:m-4">
             <Link
               href="https://my.babylist.com/baby-reg-kelly-whipple"
               target="_blank"
@@ -77,7 +77,7 @@ export default function Home() {
               />
             </Link>
           </div>
-          <div className="m-4">
+          <div className="lg:m-4">
             <Link href="/rsvp" aria-label="Click here to RSVP">
               <Image
                 className="px-4 lg:px-0"
