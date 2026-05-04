@@ -344,6 +344,14 @@ export default function RsvpPage() {
               height={1426}
               className="w-full h-auto"
             />
+            <div
+              aria-hidden="true"
+              className="absolute inset-[10%] w-[80%] h-[80%] bg-[#fffdf2] flex items-center justify-center"
+            >
+              <span className="font-body text-gray-700 text-lg">
+                Loading Google map...
+              </span>
+            </div>
             <iframe
               title="Map of 2707 Malibu Rd, Boise, ID 83705"
               src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d994.6034166332322!2d-116.22842554800161!3d43.577597375198785!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x54ae57e771e1c4d9%3A0x4afa883c20147fbb!2s2707%20Malibu%20Rd%2C%20Boise%2C%20ID%2083705!5e0!3m2!1sen!2sus!4v1774305479984!5m2!1sen!2sus"
