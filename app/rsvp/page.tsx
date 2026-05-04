@@ -1,5 +1,5 @@
 "use client"
-import { useState } from "react"
+import { useRef, useState } from "react"
 import Image from "next/image"
 import Link from "next/link"
 import { FaArrowLeft } from "react-icons/fa"
@@ -11,6 +11,8 @@ type RsvpData = {
   message: string
 }
 
+type FieldErrors = Partial<Record<"name" | "guests" | "email", string>>
+
 export default function RsvpPage() {
   const [formData, setFormData] = useState<RsvpData>({
     name: "",
@@ -20,9 +22,47 @@ export default function RsvpPage() {
   })
   const [submitted, setSubmitted] = useState<RsvpData | null>(null)
   const [error, setError] = useState<string | null>(null)
+  const [fieldErrors, setFieldErrors] = useState<FieldErrors>({})
+
+  const nameRef = useRef<HTMLInputElement>(null)
+  const guestsRef = useRef<HTMLInputElement>(null)
+  const emailRef = useRef<HTMLInputElement>(null)
+
+  const validate = (data: RsvpData): FieldErrors => {
+    const errs: FieldErrors = {}
+    if (!data.name.trim()) errs.name = "Please enter your name."
+    const guestsNum = Number(data.guests)
+    if (!data.guests.trim() || Number.isNaN(guestsNum) || guestsNum < 1) {
+      errs.guests = "Please enter at least 1 guest."
+    }
+    if (!data.email.trim()) {
+      errs.email = "Please enter your email address."
+    } else if (!/^\S+@\S+\.\S+$/.test(data.email)) {
+      errs.email = "Please enter a valid email address."
+    }
+    return errs
+  }
+
+  const clearFieldError = (field: keyof FieldErrors) => {
+    setFieldErrors((prev) => {
+      if (!prev[field]) return prev
+      const next = { ...prev }
+      delete next[field]
+      return next
+    })
+  }
 
   const submitRsvp = async () => {
     setError(null)
+    const errs = validate(formData)
+    if (Object.keys(errs).length > 0) {
+      setFieldErrors(errs)
+      if (errs.name) nameRef.current?.focus()
+      else if (errs.guests) guestsRef.current?.focus()
+      else if (errs.email) emailRef.current?.focus()
+      return
+    }
+    setFieldErrors({})
     const res = await fetch("/api/rsvp", {
       method: "POST",
       body: JSON.stringify(formData),
@@ -39,8 +79,12 @@ export default function RsvpPage() {
   return (
     <>
       <div className="bg-[url('/background-rsvp.png')] bg-repeat-y bg-size-[100%_auto] object-cover">
-        <div className="p-4">
-          <Link href="/" aria-label="back to home page">
+        <div className="p-2">
+          <Link
+            href="/"
+            aria-label="back to home page"
+            className="inline-flex items-center justify-center w-11 h-11 rounded-md focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sage"
+          >
             <FaArrowLeft size="28" className="text-cypress" />
           </Link>
         </div>
@@ -49,11 +93,10 @@ export default function RsvpPage() {
             <Image
               className="pb-4 rounded-md"
               src="/bring-a-book.png"
-              alt=""
+              alt="Kelly asks that you please bring a book in lieu of a card."
               width={400}
               height={200}
               loading="eager"
-              aria-label="Kelly asks that you please bring a book in lieu of a card."
             />
           </div>
           {submitted ? (
@@ -62,13 +105,13 @@ export default function RsvpPage() {
               aria-live="polite"
               className="bg-background p-6 rounded-lg max-w-xl mx-auto"
             >
-              <h2 className="font-heading font-semibold text-gray-900 text-center text-2xl">
+              <h1 className="font-heading font-semibold text-gray-900 text-center text-2xl">
                 Thank you, {submitted.name}!
-              </h2>
+              </h1>
               <p className="font-body text-gray-700 text-center text-xl mt-2">
                 Your RSVP has been submitted.
               </p>
-              <dl className="font-body text-gray-800 mt-6 space-y-2 bg-sage p-6 rounded-md">
+              <dl className="font-body text-gray-800 mt-6 space-y-2 bg-cypress p-6 rounded-md">
                 <div className="flex gap-2">
                   <p className="font-semibold text-white text-lg">
                     Name: {submitted.name}
@@ -87,7 +130,7 @@ export default function RsvpPage() {
                 {submitted.message && (
                   <div className="flex flex-col gap-1">
                     <p className="font-semibold text-white text-lg">Message:</p>
-                    <p className="whitespace-pre-wrap">{submitted.message}</p>
+                    <p className="whitespace-pre-wrap font-semibold text-white text-lg">{submitted.message}</p>
                   </div>
                 )}
               </dl>
@@ -96,18 +139,17 @@ export default function RsvpPage() {
                 <Image
                   className="py-8"
                   src="/submitted.png"
-                  alt=""
+                  alt="We look forward to seeing you on Saturday June 13th. Drop in anytime between 1 pm and 4 pm. See the map below for directions to 2707 Malibu Road 83705"
                   width={400}
                   height={200}
                   loading="eager"
-                  aria-label="We look forward to seeing you on Saturday June 13th. Drop in anytime between 1 pm and 4 pm. See the map below for directions to 2707 Malibu Road 83705"
                 />
               </div>
 
               <div className="flex justify-center">
                 <Link
                   href="/"
-                  className="rounded-md bg-sage px-3 py-2 text-lg font-semibold text-white shadow-xs hover:bg-lemon focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sage font-body mx-2"
+                  className="rounded-md bg-cypress px-3 py-2 text-lg font-semibold text-white shadow-xs hover:opacity-90 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cypress font-body mx-2"
                 >
                   Back to home
                 </Link>
@@ -115,7 +157,7 @@ export default function RsvpPage() {
                   href="https://my.babylist.com/baby-reg-kelly-whipple"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="rounded-md bg-sage px-3 py-2 text-lg font-semibold text-white shadow-xs hover:bg-lemon focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sage font-body mx-2"
+                  className="rounded-md bg-cypress px-3 py-2 text-lg font-semibold text-white shadow-xs hover:opacity-90 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cypress font-body mx-2"
                 >
                   Registry
                 </Link>
@@ -124,14 +166,15 @@ export default function RsvpPage() {
           ) : (
             <form
               className="bg-background p-4 rounded-lg max-w-xl mx-auto"
+              noValidate
               onSubmit={(e) => {
                 e.preventDefault()
                 submitRsvp()
               }}
             >
-              <h2 className="font-heading font-semibold text-gray-900 text-center text-2xl">
+              <h1 className="font-heading font-semibold text-gray-900 text-center text-2xl">
                 RSVP
-              </h2>
+              </h1>
               <p className="font-body text-gray-700 text-center text-xl">
                 Please feel free to drop in anytime between 1 pm and 4 pm.
               </p>
@@ -154,16 +197,30 @@ export default function RsvpPage() {
                   <div className="mt-2">
                     <input
                       id="name"
+                      ref={nameRef}
                       type="text"
                       name="name"
-                      autoComplete="given-name"
+                      autoComplete="name"
                       placeholder="Name(s)"
-                      onChange={(e) =>
+                      onChange={(e) => {
                         setFormData({ ...formData, name: e.target.value })
-                      }
+                        clearFieldError("name")
+                      }}
                       required
-                      className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-sage sm:text-lg"
+                      aria-invalid={!!fieldErrors.name}
+                      aria-describedby={
+                        fieldErrors.name ? "name-error" : undefined
+                      }
+                      className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-sage sm:text-lg aria-invalid:outline-red-600"
                     />
+                    {fieldErrors.name && (
+                      <p
+                        id="name-error"
+                        className="mt-1 text-sm text-red-700 font-body"
+                      >
+                        {fieldErrors.name}
+                      </p>
+                    )}
                   </div>
                 </div>
                 <div className="my-4">
@@ -176,16 +233,30 @@ export default function RsvpPage() {
                   <div className="mt-2">
                     <input
                       id="guests"
+                      ref={guestsRef}
                       type="number"
                       name="guests"
                       placeholder="0"
                       min="1"
-                      onChange={(e) =>
+                      onChange={(e) => {
                         setFormData({ ...formData, guests: e.target.value })
-                      }
+                        clearFieldError("guests")
+                      }}
                       required
-                      className="block w-20 rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-sage sm:text-lg"
+                      aria-invalid={!!fieldErrors.guests}
+                      aria-describedby={
+                        fieldErrors.guests ? "guests-error" : undefined
+                      }
+                      className="block w-20 rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-sage sm:text-lg aria-invalid:outline-red-600"
                     />
+                    {fieldErrors.guests && (
+                      <p
+                        id="guests-error"
+                        className="mt-1 text-sm text-red-700 font-body"
+                      >
+                        {fieldErrors.guests}
+                      </p>
+                    )}
                   </div>
                 </div>
                 <div className="my-4">
@@ -198,16 +269,30 @@ export default function RsvpPage() {
                   <div className="mt-2">
                     <input
                       id="email"
+                      ref={emailRef}
                       type="email"
                       name="email"
                       autoComplete="email"
                       placeholder="Email"
-                      onChange={(e) =>
+                      onChange={(e) => {
                         setFormData({ ...formData, email: e.target.value })
-                      }
+                        clearFieldError("email")
+                      }}
                       required
-                      className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-sage sm:text-lg"
+                      aria-invalid={!!fieldErrors.email}
+                      aria-describedby={
+                        fieldErrors.email ? "email-error" : undefined
+                      }
+                      className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-sage sm:text-lg aria-invalid:outline-red-600"
                     />
+                    {fieldErrors.email && (
+                      <p
+                        id="email-error"
+                        className="mt-1 text-sm text-red-700 font-body"
+                      >
+                        {fieldErrors.email}
+                      </p>
+                    )}
                   </div>
                 </div>
                 <div className="my-4">
@@ -234,7 +319,7 @@ export default function RsvpPage() {
               <div className="flex justify-center my-4">
                 <button
                   type="submit"
-                  className="rounded-md bg-sage px-3 py-2 text-lg font-semibold text-white shadow-xs hover:bg-lemon focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sage font-body"
+                  className="rounded-md bg-cypress px-3 py-2 text-lg font-semibold text-white shadow-xs cursor-pointer hover:opacity-90 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cypress font-body"
                 >
                   Submit
                 </button>
@@ -244,28 +329,36 @@ export default function RsvpPage() {
         </section>
 
         {/* Map section */}
-        <section className="px-4 py-8 md:px-36">
-          <a
-            href="https://www.google.com/maps?ll=43.577899,-116.228119&z=16&t=m&hl=en&gl=US&mapclient=embed&q=2707+Malibu+Rd+Boise,+ID+83705"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <div className="relative">
-              <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d994.6034166332322!2d-116.22842554800161!3d43.577597375198785!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x54ae57e771e1c4d9%3A0x4afa883c20147fbb!2s2707%20Malibu%20Rd%2C%20Boise%2C%20ID%2083705!5e0!3m2!1sen!2sus!4v1774305479984!5m2!1sen!2sus"
-                loading="lazy"
-                className="absolute inset-0 w-full h-full p-8 md:p-12 lg:p-18"
-              />
-              <Image
-                className="relative z-10 w-full"
-                src="/frame-yellow.png"
-                alt=""
-                width={700}
-                height={300}
-                aria-hidden="true"
-              />
-            </div>
-          </a>
+        <section
+          className="px-4 py-8 md:px-36"
+          aria-label="Location map"
+        >
+          <div className="relative">
+            <iframe
+              title="Map of 2707 Malibu Rd, Boise, ID 83705"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d994.6034166332322!2d-116.22842554800161!3d43.577597375198785!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x54ae57e771e1c4d9%3A0x4afa883c20147fbb!2s2707%20Malibu%20Rd%2C%20Boise%2C%20ID%2083705!5e0!3m2!1sen!2sus!4v1774305479984!5m2!1sen!2sus"
+              loading="lazy"
+              className="absolute inset-0 w-full h-full p-8 md:p-12 lg:p-18"
+            />
+            <Image
+              className="relative z-10 w-full pointer-events-none"
+              src="/frame-yellow.png"
+              alt=""
+              width={700}
+              height={300}
+              aria-hidden="true"
+            />
+          </div>
+          <div className="flex justify-center mt-4">
+            <a
+              href="https://www.google.com/maps?ll=43.577899,-116.228119&z=16&t=m&hl=en&gl=US&mapclient=embed&q=2707+Malibu+Rd+Boise,+ID+83705"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="rounded-md bg-cypress px-3 py-2 text-lg font-semibold text-white shadow-xs hover:opacity-90 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cypress font-body"
+            >
+              Open in Google Maps
+            </a>
+          </div>
         </section>
       </div>
     </>

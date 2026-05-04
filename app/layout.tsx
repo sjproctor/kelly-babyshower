@@ -76,7 +76,13 @@ export default function RootLayout({
       <body
         className={`${anton.variable} ${corinthia.variable} ${cormorant.variable} ${dancing.variable} ${montserrat.variable} ${italiana.variable} antialiased text-base`}
       >
-        <main className="overflow-x-hidden">{children}</main>
+        <a
+          href="#main-content"
+          className="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-50 focus:bg-white focus:text-cypress focus:px-4 focus:py-2 focus:rounded-md focus:shadow-md focus:outline-2 focus:outline-offset-2 focus:outline-sage focus:font-body focus:text-lg"
+        >
+          Skip to main content
+        </a>
+        <main id="main-content" className="overflow-x-hidden">{children}</main>
         <Footer />
         <Analytics />
       </body>

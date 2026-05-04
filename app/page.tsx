@@ -6,6 +6,7 @@ export default function Home() {
     <>
       <section className="bg-[url('/background-hero.png')] bg-repeat-x bg-size-[auto_100%] pb-18">
         <div className="flex justify-center py-28 lg:py-8">
+          <h1 className="sr-only">Ciao Bambino, join us to celebrate Kelly&apos;s Baby Shower</h1>
           <Image
             className="w-80 lg:w-120"
             src="/hero.png"
@@ -22,7 +23,7 @@ export default function Home() {
           <Image
             className="px-4 pb-4 -rotate-3"
             src="/kelly.png"
-            alt=""
+            alt="Auguri Kelly! In celebration of mom-to-be"
             width={500}
             height={300}
           />
@@ -32,7 +33,7 @@ export default function Home() {
             <Image
               className="p-4"
               src="/date-time.png"
-              alt="Saturday, June 13, 1 pm to 4 pm"
+              alt="Saturday, June 13; drop by anytime between 1 pm to 4 pm"
               width={500}
               height={300}
             />
@@ -53,9 +54,9 @@ export default function Home() {
           </div>
           <div className="m-4">
             <Image
-              className="Please consider carpooling, ride shares, or biking to reduce parking congestion"
+              className="p-4"
               src="/bike.png"
-              alt=""
+              alt="Please consider carpooling, ride shares, or biking to reduce parking congestion"
               width={600}
               height={350}
             />
@@ -65,7 +66,7 @@ export default function Home() {
               href="https://my.babylist.com/baby-reg-kelly-whipple"
               target="_blank"
               rel="noopener noreferrer"
-              aria-label="Click Kelly's registry"
+              aria-label="Visit Kelly's baby registry"
             >
               <Image
                 className="lg:w-md"

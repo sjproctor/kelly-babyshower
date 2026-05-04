@@ -3,7 +3,7 @@ import Link from "next/link"
 
 export default function Footer() {
   return (
-    <div className="flex items-center flex-start m-2">
+    <footer className="flex items-center flex-start m-2">
       <Link href="/" aria-label="back to home page">
         <Image
           src="/lemon.png"
@@ -17,6 +17,6 @@ export default function Footer() {
         Crafted with love by
         <br className="sm:hidden" /> Sarah Proctor &copy; 2026
       </p>
-    </div>
+    </footer>
   )
 }
