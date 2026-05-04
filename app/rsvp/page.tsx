@@ -83,9 +83,9 @@ export default function RsvpPage() {
           <Link
             href="/"
             aria-label="back to home page"
-            className="inline-flex items-center justify-center w-11 h-11 rounded-md focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sage"
+            className="inline-flex items-center justify-center w-11 h-11 rounded-md focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-blue"
           >
-            <FaArrowLeft size="28" className="text-cypress" />
+            <FaArrowLeft size="28" className="text-gray-blue" />
           </Link>
         </div>
         <section className="m-4">
@@ -111,33 +111,32 @@ export default function RsvpPage() {
               <p className="font-body text-gray-700 text-center text-xl mt-2">
                 Your RSVP has been submitted.
               </p>
-              <dl className="font-body text-gray-800 mt-6 space-y-2 bg-cypress p-6 rounded-md">
+              <dl className="font-body text-gray-800 my-6 mx-8 space-y-2">
                 <div className="flex gap-2">
-                  <p className="font-semibold text-white text-lg">
+                  <p className="font-bold text-xl">
                     Name: {submitted.name}
                   </p>
                 </div>
                 <div className="flex gap-2">
-                  <p className="font-semibold text-white text-lg">
+                  <p className="font-bold text-xl">
                     Party size: {submitted.guests}
                   </p>
                 </div>
                 <div className="flex gap-2">
-                  <p className="font-semibold text-white text-lg">
+                  <p className="font-bold text-xl">
                     Email: {submitted.email}
                   </p>
                 </div>
                 {submitted.message && (
                   <div className="flex flex-col gap-1">
-                    <p className="font-semibold text-white text-lg">Message:</p>
-                    <p className="whitespace-pre-wrap font-semibold text-white text-lg">{submitted.message}</p>
+                    <p className="font-bold text-xl">Message:</p>
+                    <p className="whitespace-pre-wrap font-bold text-xl">{submitted.message}</p>
                   </div>
                 )}
               </dl>
 
               <div className="flex justify-center">
                 <Image
-                  className="py-8"
                   src="/submitted.png"
                   alt="We look forward to seeing you on Saturday June 13th. Drop in anytime between 1 pm and 4 pm. See the map below for directions to 2707 Malibu Road 83705"
                   width={400}
@@ -146,10 +145,10 @@ export default function RsvpPage() {
                 />
               </div>
 
-              <div className="flex justify-center">
+              <div className="flex justify-center pt-6">
                 <Link
                   href="/"
-                  className="rounded-md bg-cypress px-3 py-2 text-lg font-semibold text-white shadow-xs hover:opacity-90 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cypress font-body mx-2"
+                  className="rounded-md bg-gray-blue px-3 py-2 text-xl font-bold text-white shadow-xs hover:opacity-90 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-blue font-body mx-2"
                 >
                   Back to home
                 </Link>
@@ -157,7 +156,7 @@ export default function RsvpPage() {
                   href="https://my.babylist.com/baby-reg-kelly-whipple"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="rounded-md bg-cypress px-3 py-2 text-lg font-semibold text-white shadow-xs hover:opacity-90 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cypress font-body mx-2"
+                  className="rounded-md bg-gray-blue px-3 py-2 text-xl font-bold text-white shadow-xs hover:opacity-90 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-blue font-body mx-2"
                 >
                   Registry
                 </Link>
@@ -211,7 +210,7 @@ export default function RsvpPage() {
                       aria-describedby={
                         fieldErrors.name ? "name-error" : undefined
                       }
-                      className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-sage sm:text-lg aria-invalid:outline-red-600"
+                      className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-gray-blue sm:text-lg aria-invalid:outline-red-600"
                     />
                     {fieldErrors.name && (
                       <p
@@ -247,7 +246,7 @@ export default function RsvpPage() {
                       aria-describedby={
                         fieldErrors.guests ? "guests-error" : undefined
                       }
-                      className="block w-20 rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-sage sm:text-lg aria-invalid:outline-red-600"
+                      className="block w-20 rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-gray-blue sm:text-lg aria-invalid:outline-red-600"
                     />
                     {fieldErrors.guests && (
                       <p
@@ -283,7 +282,7 @@ export default function RsvpPage() {
                       aria-describedby={
                         fieldErrors.email ? "email-error" : undefined
                       }
-                      className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-sage sm:text-lg aria-invalid:outline-red-600"
+                      className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-gray-blue sm:text-lg aria-invalid:outline-red-600"
                     />
                     {fieldErrors.email && (
                       <p
@@ -311,7 +310,7 @@ export default function RsvpPage() {
                       onChange={(e) =>
                         setFormData({ ...formData, message: e.target.value })
                       }
-                      className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-sage sm:text-lg"
+                      className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-gray-blue sm:text-lg"
                     ></textarea>
                   </div>
                 </div>
@@ -319,7 +318,7 @@ export default function RsvpPage() {
               <div className="flex justify-center my-4">
                 <button
                   type="submit"
-                  className="rounded-md bg-cypress px-3 py-2 text-lg font-semibold text-white shadow-xs cursor-pointer hover:opacity-90 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cypress font-body"
+                  className="rounded-md bg-gray-blue px-3 py-2 text-xl font-bold text-white shadow-xs cursor-pointer hover:opacity-90 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-blue font-body"
                 >
                   Submit
                 </button>
@@ -329,35 +328,40 @@ export default function RsvpPage() {
         </section>
 
         {/* Map section */}
-        <section
-          className="px-4 py-8 md:px-36"
-          aria-label="Location map"
-        >
-          <div className="relative">
+        <section aria-label="Party location map">
+          <Link
+            href="https://www.google.com/maps?ll=43.577899,-116.228119&z=16&t=m&hl=en&gl=US&mapclient=embed&q=2707+Malibu+Rd+Boise,+ID+83705"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Open map of 2707 Malibu Rd, Boise, ID 83705 in Google Maps"
+            className="relative block mx-auto max-w-xl lg:max-w-2xl px-4 lg:px-0 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-blue"
+          >
+            <Image
+              src="/frame-blue.png"
+              alt=""
+              aria-hidden="true"
+              width={1683}
+              height={1426}
+              className="w-full h-auto"
+            />
             <iframe
               title="Map of 2707 Malibu Rd, Boise, ID 83705"
               src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d994.6034166332322!2d-116.22842554800161!3d43.577597375198785!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x54ae57e771e1c4d9%3A0x4afa883c20147fbb!2s2707%20Malibu%20Rd%2C%20Boise%2C%20ID%2083705!5e0!3m2!1sen!2sus!4v1774305479984!5m2!1sen!2sus"
               loading="lazy"
-              className="absolute inset-0 w-full h-full p-8 md:p-12 lg:p-18"
-            />
-            <Image
-              className="relative z-10 w-full pointer-events-none"
-              src="/frame-yellow.png"
-              alt=""
-              width={700}
-              height={300}
+              tabIndex={-1}
               aria-hidden="true"
+              className="absolute inset-[10%] w-[80%] h-[80%]"
             />
-          </div>
-          <div className="flex justify-center mt-4">
-            <a
+          </Link>
+          <div className="flex justify-center py-4">
+            <Link
               href="https://www.google.com/maps?ll=43.577899,-116.228119&z=16&t=m&hl=en&gl=US&mapclient=embed&q=2707+Malibu+Rd+Boise,+ID+83705"
               target="_blank"
               rel="noopener noreferrer"
-              className="rounded-md bg-cypress px-3 py-2 text-lg font-semibold text-white shadow-xs hover:opacity-90 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cypress font-body"
+              className="rounded-md bg-gray-blue px-3 py-2 text-xl font-bold text-white shadow-xs hover:opacity-90 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-blue font-body"
             >
               Open in Google Maps
-            </a>
+            </Link>
           </div>
         </section>
       </div>

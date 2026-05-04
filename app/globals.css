@@ -8,6 +8,7 @@
   --azzurro: #87b0cc;
   --cypress: #424f33;
   --dark-azure: #004582;
+  --gray-blue: #7487b8;
   --lemon: #e6c55b;
   --orange: #e66b24;
   --orange-background: rgba(230, 107, 36, 0.8);
@@ -29,6 +30,7 @@ Without this block, Tailwind wouldn't know about the custom values
   --color-azzurro: var(--azzurro);
   --color-cypress: var(--cypress);
   --color-dark-azure: var(--dark-azure);
+  --color-gray-blue: var(--gray-blue);
   --color-lemon: var(--lemon);
   --color-orange: var(--orange);
   --color-orange-background: var(--orange-background);
