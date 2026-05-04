@@ -21,6 +21,7 @@ export default function RsvpPage() {
     message: ""
   })
   const [submitted, setSubmitted] = useState<RsvpData | null>(null)
+  const [submitting, setSubmitting] = useState(false)
   const [error, setError] = useState<string | null>(null)
   const [fieldErrors, setFieldErrors] = useState<FieldErrors>({})
 
@@ -63,17 +64,22 @@ export default function RsvpPage() {
       return
     }
     setFieldErrors({})
-    const res = await fetch("/api/rsvp", {
-      method: "POST",
-      body: JSON.stringify(formData),
-      headers: { "Content-Type": "application/json" }
-    })
+    setSubmitting(true)
+    try {
+      const res = await fetch("/api/rsvp", {
+        method: "POST",
+        body: JSON.stringify(formData),
+        headers: { "Content-Type": "application/json" }
+      })
 
-    if (res.ok) {
-      setSubmitted(formData)
-      window.scrollTo({ top: 0, behavior: "smooth" })
-    } else {
-      setError("Something went wrong submitting your RSVP. Please try again.")
+      if (res.ok) {
+        setSubmitted(formData)
+        window.scrollTo({ top: 0, behavior: "smooth" })
+      } else {
+        setError("Something went wrong submitting your RSVP. Please try again.")
+      }
+    } finally {
+      setSubmitting(false)
     }
   }
   return (
@@ -315,13 +321,28 @@ export default function RsvpPage() {
                   </div>
                 </div>
               </div>
-              <div className="flex justify-center my-4">
+              <div className="flex flex-col items-center my-4">
                 <button
                   type="submit"
-                  className="rounded-md bg-gray-blue px-3 py-2 text-xl font-bold text-white shadow-xs cursor-pointer hover:opacity-90 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-blue font-body"
+                  disabled={submitting}
+                  aria-busy={submitting}
+                  className="inline-flex items-center gap-2 rounded-md bg-gray-blue px-3 py-2 text-xl font-bold text-white shadow-xs cursor-pointer hover:opacity-90 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-blue font-body disabled:opacity-70 disabled:cursor-not-allowed"
                 >
-                  Submit
+                  {submitting && (
+                    <span
+                      aria-hidden="true"
+                      className="h-5 w-5 rounded-full border-2 border-white/40 border-t-white animate-spin"
+                    />
+                  )}
+                  {submitting ? "Submitting..." : "Submit"}
                 </button>
+                <p
+                  role="status"
+                  aria-live="polite"
+                  className="sr-only"
+                >
+                  {submitting ? "Submitting your RSVP, please wait." : ""}
+                </p>
               </div>
             </form>
           )}
