@@ -18,7 +18,7 @@ export default function RsvpPage() {
     email: "",
     message: ""
   })
-  const [submitted, setSubmitted] = useState<RsvpData | null>(true)
+  const [submitted, setSubmitted] = useState<RsvpData | null>(null)
   const [error, setError] = useState<string | null>(null)
 
   const submitRsvp = async () => {
@@ -47,7 +47,7 @@ export default function RsvpPage() {
         <section className="m-4">
           <div className="flex justify-center">
             <Image
-              className="pb-4"
+              className="pb-4 rounded-md"
               src="/bring-a-book.png"
               alt=""
               width={400}
@@ -91,29 +91,20 @@ export default function RsvpPage() {
                   </div>
                 )}
               </dl>
-              <br />
-              <p className="font-body text-gray-700 text-center text-lg mt-2">
-                We look forward to seeing you on <br className="sm:hidden" />
-                <b>Saturday, June 13th</b>
-              </p>
-              <p className="font-body text-gray-700 text-center text-lg">
-                Drop in anytime between
-                <b>1 pm and 4 pm</b>
-              </p>
+
               <div className="flex justify-center">
                 <Image
-                  src="/lemon.png"
+                  className="py-8"
+                  src="/submitted.png"
                   alt=""
-                  width={25}
-                  height={25}
-                  className="-rotate-10"
+                  width={400}
+                  height={200}
+                  loading="eager"
+                  aria-label="We look forward to seeing you on Saturday June 13th. Drop in anytime between 1 pm and 4 pm. See the map below for directions to 2707 Malibu Road 83705"
                 />
               </div>
-              <p className="font-body text-gray-700 text-center text-lg">
-                See the map below for directions to <br className="sm:hidden" />
-                <b>2707 Malibu Road, 83705</b>
-              </p>
-              <div className="flex justify-center mt-10">
+
+              <div className="flex justify-center">
                 <Link
                   href="/"
                   className="rounded-md bg-sage px-3 py-2 text-lg font-semibold text-white shadow-xs hover:bg-lemon focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sage font-body mx-2"

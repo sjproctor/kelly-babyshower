@@ -23,7 +23,10 @@ export async function POST(req: Request) {
   if (!res.ok) {
     const errorBody = await res.text()
     console.error("Airtable error:", res.status, errorBody)
-    return Response.json({ error: "Failed", details: errorBody }, { status: 500 })
+    return Response.json(
+      { error: "Failed", details: errorBody },
+      { status: 500 }
+    )
   }
   return Response.json({ success: true })
 }
