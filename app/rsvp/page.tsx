@@ -86,12 +86,8 @@ export default function RsvpPage() {
     <>
       <div className="bg-[url('/background-rsvp.png')] bg-repeat-y bg-size-[100%_auto] object-cover">
         <div className="p-2">
-          <Link
-            href="/"
-            aria-label="back to home page"
-            className="inline-flex items-center justify-center w-11 h-11 rounded-md focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-blue"
-          >
-            <FaArrowLeft size="28" className="text-gray-blue" />
+          <Link href="/" aria-label="back to home page" aria-live="polite">
+            <Image width={100} height={75} src="/home.png" alt="" />
           </Link>
         </div>
         <section className="m-4">
@@ -119,9 +115,7 @@ export default function RsvpPage() {
               </p>
               <dl className="font-body text-gray-800 my-6 mx-8 space-y-2">
                 <div className="flex gap-2">
-                  <p className="font-bold text-xl">
-                    Name: {submitted.name}
-                  </p>
+                  <p className="font-bold text-xl">Name: {submitted.name}</p>
                 </div>
                 <div className="flex gap-2">
                   <p className="font-bold text-xl">
@@ -129,14 +123,14 @@ export default function RsvpPage() {
                   </p>
                 </div>
                 <div className="flex gap-2">
-                  <p className="font-bold text-xl">
-                    Email: {submitted.email}
-                  </p>
+                  <p className="font-bold text-xl">Email: {submitted.email}</p>
                 </div>
                 {submitted.message && (
                   <div className="flex flex-col gap-1">
                     <p className="font-bold text-xl">Message:</p>
-                    <p className="whitespace-pre-wrap font-bold text-xl">{submitted.message}</p>
+                    <p className="whitespace-pre-wrap font-bold text-xl">
+                      {submitted.message}
+                    </p>
                   </div>
                 )}
               </dl>
@@ -336,11 +330,7 @@ export default function RsvpPage() {
                   )}
                   {submitting ? "Submitting..." : "Submit"}
                 </button>
-                <p
-                  role="status"
-                  aria-live="polite"
-                  className="sr-only"
-                >
+                <p role="status" aria-live="polite" className="sr-only">
                   {submitting ? "Submitting your RSVP, please wait." : ""}
                 </p>
               </div>
