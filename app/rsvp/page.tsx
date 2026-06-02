@@ -9,6 +9,7 @@ type RsvpData = {
   guests: string
   email: string
   message: string
+  declining: boolean
 }
 
 type FieldErrors = Partial<Record<"name" | "guests" | "email", string>>
@@ -18,7 +19,8 @@ export default function RsvpPage() {
     name: "",
     guests: "",
     email: "",
-    message: ""
+    message: "",
+    declining: false
   })
   const [submitted, setSubmitted] = useState<RsvpData | null>(null)
   const [submitting, setSubmitting] = useState(false)
@@ -32,9 +34,11 @@ export default function RsvpPage() {
   const validate = (data: RsvpData): FieldErrors => {
     const errs: FieldErrors = {}
     if (!data.name.trim()) errs.name = "Please enter your name."
-    const guestsNum = Number(data.guests)
-    if (!data.guests.trim() || Number.isNaN(guestsNum) || guestsNum < 1) {
-      errs.guests = "Please enter at least 1 guest."
+    if (!data.declining) {
+      const guestsNum = Number(data.guests)
+      if (!data.guests.trim() || Number.isNaN(guestsNum) || guestsNum < 1) {
+        errs.guests = "Please enter at least 1 guest."
+      }
     }
     if (!data.email.trim()) {
       errs.email = "Please enter your email address."
@@ -65,15 +69,18 @@ export default function RsvpPage() {
     }
     setFieldErrors({})
     setSubmitting(true)
+    const payload: RsvpData = formData.declining
+      ? { ...formData, guests: "0" }
+      : formData
     try {
       const res = await fetch("/api/rsvp", {
         method: "POST",
-        body: JSON.stringify(formData),
+        body: JSON.stringify(payload),
         headers: { "Content-Type": "application/json" }
       })
 
       if (res.ok) {
-        setSubmitted(formData)
+        setSubmitted(payload)
         window.scrollTo({ top: 0, behavior: "smooth" })
       } else {
         setError("Something went wrong submitting your RSVP. Please try again.")
@@ -111,17 +118,21 @@ export default function RsvpPage() {
                 Thank you, {submitted.name}!
               </h1>
               <p className="font-body text-gray-700 text-center text-xl mt-2">
-                Your RSVP has been submitted.
+                {submitted.declining
+                  ? "We're sorry you can't make it — thank you for letting us know. You'll be missed!"
+                  : "Your RSVP has been submitted."}
               </p>
               <dl className="font-body text-gray-800 my-6 mx-8 space-y-2">
                 <div className="flex gap-2">
                   <p className="font-bold text-xl">Name: {submitted.name}</p>
                 </div>
-                <div className="flex gap-2">
-                  <p className="font-bold text-xl">
-                    Party size: {submitted.guests}
-                  </p>
-                </div>
+                {!submitted.declining && (
+                  <div className="flex gap-2">
+                    <p className="font-bold text-xl">
+                      Party size: {submitted.guests}
+                    </p>
+                  </div>
+                )}
                 <div className="flex gap-2">
                   <p className="font-bold text-xl">Email: {submitted.email}</p>
                 </div>
@@ -135,15 +146,17 @@ export default function RsvpPage() {
                 )}
               </dl>
 
-              <div className="flex justify-center">
-                <Image
-                  src="/submitted.png"
-                  alt="We look forward to seeing you on Saturday June 13th. Drop in anytime between 1 pm and 4 pm. See the map below for directions to 2707 Malibu Road 83705"
-                  width={400}
-                  height={200}
-                  loading="eager"
-                />
-              </div>
+              {!submitted.declining && (
+                <div className="flex justify-center">
+                  <Image
+                    src="/submitted.png"
+                    alt="We look forward to seeing you on Saturday June 13th. Drop in anytime between 1 pm and 4 pm. See the map below for directions to 2707 Malibu Road 83705"
+                    width={400}
+                    height={200}
+                    loading="eager"
+                  />
+                </div>
+              )}
 
               <div className="flex justify-center pt-6">
                 <Link
@@ -223,41 +236,61 @@ export default function RsvpPage() {
                   </div>
                 </div>
                 <div className="my-4">
-                  <label
-                    htmlFor="guests"
-                    className="block text-lg font-medium text-gray-900 font-body"
-                  >
-                    Number in your party (including yourself)*
-                  </label>
-                  <div className="mt-2">
+                  <label className="flex items-center gap-2 text-lg font-medium text-gray-900 font-body cursor-pointer">
                     <input
-                      id="guests"
-                      ref={guestsRef}
-                      type="number"
-                      name="guests"
-                      placeholder="0"
-                      min="1"
+                      type="checkbox"
+                      name="declining"
+                      checked={formData.declining}
                       onChange={(e) => {
-                        setFormData({ ...formData, guests: e.target.value })
+                        setFormData({
+                          ...formData,
+                          declining: e.target.checked
+                        })
                         clearFieldError("guests")
                       }}
-                      required
-                      aria-invalid={!!fieldErrors.guests}
-                      aria-describedby={
-                        fieldErrors.guests ? "guests-error" : undefined
-                      }
-                      className="block w-20 rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-gray-blue sm:text-lg aria-invalid:outline-red-600"
+                      className="h-5 w-5 rounded border-gray-300 text-gray-blue focus:outline-2 focus:outline-offset-2 focus:outline-gray-blue"
                     />
-                    {fieldErrors.guests && (
-                      <p
-                        id="guests-error"
-                        className="mt-1 text-sm text-red-700 font-body"
-                      >
-                        {fieldErrors.guests}
-                      </p>
-                    )}
-                  </div>
+                    Declining with regrets — I can&apos;t attend
+                  </label>
                 </div>
+                {!formData.declining && (
+                  <div className="my-4">
+                    <label
+                      htmlFor="guests"
+                      className="block text-lg font-medium text-gray-900 font-body"
+                    >
+                      Number in your party (including yourself)*
+                    </label>
+                    <div className="mt-2">
+                      <input
+                        id="guests"
+                        ref={guestsRef}
+                        type="number"
+                        name="guests"
+                        placeholder="0"
+                        min="1"
+                        onChange={(e) => {
+                          setFormData({ ...formData, guests: e.target.value })
+                          clearFieldError("guests")
+                        }}
+                        required
+                        aria-invalid={!!fieldErrors.guests}
+                        aria-describedby={
+                          fieldErrors.guests ? "guests-error" : undefined
+                        }
+                        className="block w-20 rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-gray-blue sm:text-lg aria-invalid:outline-red-600"
+                      />
+                      {fieldErrors.guests && (
+                        <p
+                          id="guests-error"
+                          className="mt-1 text-sm text-red-700 font-body"
+                        >
+                          {fieldErrors.guests}
+                        </p>
+                      )}
+                    </div>
+                  </div>
+                )}
                 <div className="my-4">
                   <label
                     htmlFor="email"
