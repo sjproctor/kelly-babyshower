@@ -119,7 +119,7 @@ export default function RsvpPage() {
               </h1>
               <p className="font-body text-gray-700 text-center text-xl mt-2">
                 {submitted.declining
-                  ? "We're sorry you can't make it — thank you for letting us know. You'll be missed!"
+                  ? "We're sorry you can't make it and thank you for letting us know. You'll be missed!"
                   : "Your RSVP has been submitted."}
               </p>
               <dl className="font-body text-gray-800 my-6 mx-8 space-y-2">
@@ -250,7 +250,7 @@ export default function RsvpPage() {
                       }}
                       className="h-5 w-5 rounded border-gray-300 text-gray-blue focus:outline-2 focus:outline-offset-2 focus:outline-gray-blue"
                     />
-                    Declining with regrets — I can&apos;t attend
+                    Declining with regrets
                   </label>
                 </div>
                 {!formData.declining && (
